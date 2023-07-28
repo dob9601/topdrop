@@ -68,6 +68,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./artifacts/x86_64-unknown-linux-musl
-            ./artifacts/x86_64-apple-darwin
+            ./artifacts/*/*
           fail_on_unmatched_files: true
