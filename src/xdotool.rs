@@ -1,5 +1,23 @@
 use std::{error::Error, process::Command};
 
+use strum::Display;
+
+#[derive(Display)]
+pub enum WindowState {
+    Modal,
+    Sticky,
+    MaximizedVert,
+    MaximizedHorz,
+    Above,
+    Below,
+    SkipTaskbar,
+    SkipPager,
+    Fullscreen,
+    Hidden,
+    Shaded,
+    DemandsAttention,
+}
+
 #[derive(Debug)]
 pub struct Window(pub u32);
 
@@ -48,10 +66,29 @@ impl Window {
         };
         Ok(())
     }
+
+    pub fn add_window_state(&self, window_state: WindowState) -> Result<(), Box<dyn Error>> {
+        run_xdotool(&[
+            "windowstate",
+            "--add",
+            window_state.to_string().as_str(),
+            self.0.to_string().as_str(),
+        ])?;
+        Ok(())
+    }
+
+    pub fn remove_window_state(&self, window_state: WindowState) -> Result<(), Box<dyn Error>> {
+        run_xdotool(&[
+            "windowstate",
+            "--remove",
+            window_state.to_string().as_str(),
+            self.0.to_string().as_str(),
+        ])?;
+        Ok(())
+    }
 }
 
 pub fn run_xdotool(args: &[&str]) -> Result<String, Box<dyn Error>> {
-    dbg!(args);
     let output = Command::new("xdotool").args(args).output()?;
 
     if let Some(code) = output.status.code() {

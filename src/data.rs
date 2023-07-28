@@ -15,7 +15,7 @@ lazy_static! {
 #[derive(Serialize, Deserialize)]
 pub struct State {
     #[serde(flatten)]
-    pub data: HashMap<String, WindowState>,
+    pub data: HashMap<String, ApplicationState>,
 }
 
 impl State {
@@ -49,12 +49,12 @@ impl State {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct WindowState {
+pub struct ApplicationState {
     pub id: u32,
     pub visible: bool,
 }
 
-impl WindowState {
+impl ApplicationState {
     pub fn new(id: u32, visible: bool) -> Self {
         Self { id, visible }
     }
