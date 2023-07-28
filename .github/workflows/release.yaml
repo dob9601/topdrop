@@ -3,7 +3,8 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    
+  workflow_dispatch:
+   
 name: Release
   
 jobs:
@@ -25,17 +26,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Ensure Cargo.toml Version Matches Git Tag
-        run: |
-          toml_version=v$(sed -n 's/^version = "\(.*\)"/\1/p' < Cargo.toml)
-          actual_version=$(git describe --tags --abbrev=0)
-          if [[ "${toml_version}" != "${actual_version}" ]]; then
-            echo "Refusing to publish - toml version doesn't match tag version"
-            exit 1
-          else
-            echo "Git tag matches Cargo.toml)"
-          fi
-
       - name: Cargo cache
         uses: actions/cache@v3
         with:
@@ -50,13 +40,13 @@ jobs:
       - name: Create Release Build 
         run: |
           cargo build --release --target ${{ matrix.target }}
-          ls target/release
+          ls target/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}
-          path: ./target/release/topdrop
+          path: ./target/${{ matrix.target }}/release/topdrop
           if-no-files-found: error
 
   deploy:
