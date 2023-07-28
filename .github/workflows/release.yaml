@@ -48,13 +48,16 @@ jobs:
         run: rustup target add ${{ matrix.target }}
 
       - name: Create Release Build 
-        run: cargo build --release --target ${{ matrix.target }}
+        run: |
+          cargo build --release --target ${{ matrix.target }}
+          ls target/release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}
           path: ./target/release/topdrop
+          if-no-files-found: error
 
   deploy:
     if: startsWith(github.ref, 'refs/tags/')
