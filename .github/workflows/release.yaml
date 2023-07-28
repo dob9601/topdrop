@@ -61,7 +61,11 @@ jobs:
         with:
           path: ./artifacts
 
+      - name: tmp
+        run: ls ./artifacts
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: ./artifacts/*
+          fail_on_unmatched_files: true
