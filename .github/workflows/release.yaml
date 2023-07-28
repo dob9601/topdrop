@@ -45,11 +45,14 @@ jobs:
           cargo build --release --target ${{ matrix.target }}
           ls target/
 
+      - name: Rename Artifact To Target
+        run: mv ./target/${{ matrix.target }}/release/topdrop ./topdrop-${{ matrix.target }}
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.target }}
-          path: ./target/${{ matrix.target }}/release/topdrop
+          path: ./topdrop-${{ matrix.target }}
           if-no-files-found: error
 
   deploy:
