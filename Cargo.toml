@@ -1,5 +1,5 @@
 [package]
-name = "dropper"
+name = "topdrop"
 version = "0.1.0"
 edition = "2021"
 
@@ -12,5 +12,3 @@ lazy_static = "1.4.0"
 serde = { version = "1.0.176", features = ["derive"] }
 serde_yaml = "0.9.25"
 strum = { version = "0.25.0", features = ["derive"] }
-thiserror = "1.0.44"
-wmctrl = "0.1.8"
