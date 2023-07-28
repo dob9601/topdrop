@@ -1,6 +1,8 @@
 # topdrop
 
-A small tool for managing dropdown/quake-style terminals, similar to [tdrop](https://github.com/noctuid/tdrop)
+A small tool for managing dropdown/quake-style terminals, similar to [tdrop](https://github.com/noctuid/tdrop).
+
+Supported by any window manager supported by xdotool.
 
 ```
 Usage: topdrop [OPTIONS] <APPLICATION_NAME> <X1> <Y1> <X2> <Y2>
