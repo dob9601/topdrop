@@ -1,11 +1,14 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Release
+
 on:
   push:
     tags:
       - 'v*.*.*'
   workflow_dispatch:
    
-name: Release
+permissions:
+  contents: write
   
 jobs:
   build:
