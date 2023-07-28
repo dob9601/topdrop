@@ -43,7 +43,6 @@ jobs:
       - name: Create Release Build 
         run: |
           cargo build --release --target ${{ matrix.target }}
-          ls target/
 
       - name: Rename Artifact To Target
         run: mv ./target/${{ matrix.target }}/release/topdrop ./topdrop-${{ matrix.target }}
@@ -63,9 +62,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: ./artifacts
-
-      - name: tmp
-        run: ls ./artifacts
 
       - name: Release
         uses: softprops/action-gh-release@v1

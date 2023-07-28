@@ -24,7 +24,7 @@ pub struct Window(pub u32);
 
 impl Window {
     pub fn find_by_pid(pid: u32) -> Result<Window, Box<dyn Error>> {
-        let window_id = dbg!(run_xdotool(&["search", "--pid", pid.to_string().as_str()])?);
+        let window_id = run_xdotool(&["search", "--pid", pid.to_string().as_str()])?;
 
         Ok(Window(window_id.trim().parse()?))
     }

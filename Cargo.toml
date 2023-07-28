@@ -1,7 +1,12 @@
 [package]
 name = "topdrop"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+
+license = "MIT"
+authors = ["Daniel O'Brien <dob9601@gmail.com>"]
+description = "A Rust implementation of a dropdown window manager, similar to that of tdrop"
+repository = "https://github.com/dob9601/topdrop"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

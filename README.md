@@ -13,4 +13,5 @@ A small tool allowing for dropdown/quake-style terminals
 - cargo install topdrop
 
 ### Pre-built binary
-- Can be downloaded via [releases]()
+- Can be downloaded via [releases](https://github.com/dob9601/topdrop/releases/latest)
+- Available for Apple Darwin and MUSL targets.
