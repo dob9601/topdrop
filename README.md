@@ -33,3 +33,10 @@ Options:
 ### Pre-built binary
 - Can be downloaded via [releases](https://github.com/dob9601/topdrop/releases/latest)
 - Available for Apple Darwin and MUSL targets.
+
+## Configuration
+
+### Example Configuration for Gnome with Kitty
+![image](https://github.com/dob9601/topdrop/assets/24723950/04d77fa8-0c34-4102-8321-f547ce775766)
+
+[Demo](https://github.com/dob9601/topdrop/assets/24723950/0bf3c1ef-c74e-4b3a-b1d1-7deab263b72b)
