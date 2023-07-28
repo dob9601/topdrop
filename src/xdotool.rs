@@ -1,8 +1,9 @@
 use std::{error::Error, process::Command};
 
+use clap::ValueEnum;
 use strum::Display;
 
-#[derive(Display)]
+#[derive(Display, Clone, ValueEnum)]
 pub enum WindowState {
     Modal,
     Sticky,

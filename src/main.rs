@@ -2,7 +2,6 @@ use std::{error::Error, process::Command, thread::sleep, time::Duration};
 
 use clap::Parser;
 use data::ApplicationState;
-use xdotool::WindowState;
 
 use crate::{cli::Cli, data::State, xdotool::Window};
 
@@ -12,55 +11,6 @@ pub mod xdotool;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Cli::parse();
-    let mut window_states = vec![];
-
-    if args.modal {
-        window_states.push(WindowState::Modal);
-    }
-
-    if args.sticky {
-        window_states.push(WindowState::Sticky);
-    }
-
-    if args.maximized_vert {
-        window_states.push(WindowState::MaximizedVert);
-    }
-
-    if args.maximized_horz {
-        window_states.push(WindowState::MaximizedHorz);
-    }
-
-    if args.above {
-        window_states.push(WindowState::Above);
-    }
-
-    if args.below {
-        window_states.push(WindowState::Below);
-    }
-
-    if args.skip_taskbar {
-        window_states.push(WindowState::SkipTaskbar);
-    }
-
-    if args.skip_pager {
-        window_states.push(WindowState::SkipPager);
-    }
-
-    if args.fullscreen {
-        window_states.push(WindowState::Fullscreen);
-    }
-
-    if args.hidden {
-        window_states.push(WindowState::Hidden);
-    }
-
-    if args.shaded {
-        window_states.push(WindowState::Shaded);
-    }
-
-    if args.demands_attention {
-        window_states.push(WindowState::DemandsAttention);
-    }
 
     let state_key = args
         .unique_name
@@ -78,7 +28,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             state.visible = !state.visible;
             global_state.save()?;
             window.resize(args.x1, args.y1, args.x2, args.y2)?;
-            window_states
+            args.state
                 .into_iter()
                 .map(|state| window.add_window_state(state))
                 .collect::<Result<Vec<_>, _>>()?;
@@ -101,7 +51,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     };
 
     window.resize(args.x1, args.y1, args.x2, args.y2)?;
-    window_states
+    args.state
         .into_iter()
         .map(|state| window.add_window_state(state))
         .collect::<Result<Vec<_>, _>>()?;
